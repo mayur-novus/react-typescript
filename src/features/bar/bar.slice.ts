@@ -1,4 +1,4 @@
-import {combineReducers, createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { combineReducers, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { injectAsyncReducer } from 'app/store'
 import { Loading } from 'base/components/loading/loading.middleware'
 
@@ -54,9 +54,12 @@ const barSlice = createSlice({
 
 const { actions: barActions, name: barKey, reducer: barReducer } = barSlice
 
-injectAsyncReducer('async1', combineReducers({
-  [barKey]: barReducer
-}))
+injectAsyncReducer(
+  'async1',
+  combineReducers({
+    [barKey]: barReducer,
+  })
+)
 
 const barSliceSelector = (state: any): BarState => state.async1[barKey]
 

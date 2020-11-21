@@ -6,7 +6,7 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo({
-      behavior: "smooth",
+      behavior: 'smooth',
       top: 0,
       left: 0,
     })
