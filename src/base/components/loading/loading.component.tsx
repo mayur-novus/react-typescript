@@ -11,8 +11,8 @@ const Loading = () => {
         border-color: red;
       `}
       size={35}
-      color={'#123abc'}
-      loading={true}
+      color="#123abc"
+      loading
     />
   )
 }

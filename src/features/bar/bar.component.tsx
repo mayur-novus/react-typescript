@@ -1,21 +1,30 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { barDataSelector } from './bar.selectors'
+import React, { ReactElement } from 'react'
+import useDrawer from 'base/drawer'
+import Button from '@material-ui/core/Button'
+import SecondaryContent from './secondary-drawer.component'
+import PrimaryContent from './primary-drawer.compoment'
+import useDrawerManager from '../../base/drawer/drawer.manager'
 
-const Bar = () => {
-  const dispatch = useDispatch()
-  const data = useSelector(barDataSelector)
+const Bar = (): ReactElement => {
+  const { drawer } = useDrawer()
+  const { push } = useDrawerManager()
 
-  const onGetUserData = async () => {
-    const [{ barActions }] = await Promise.all([import('./bar.slice'), import('./bar.sagas')])
-    dispatch(barActions.getUser('novus-logics'))
+  const onOpenDrawer = async () => {
+    push(<SecondaryContent />)
+
+    setTimeout(() => {
+      push(<PrimaryContent />, 'primary')
+    }, 4000)
   }
 
-  if (data) {
-    return <pre>{JSON.stringify(data, null, 2)}</pre>
-  }
-
-  return <button onClick={onGetUserData}>Get novus-logics</button>
+  return (
+    <>
+      <Button variant="outlined" size="small" onClick={onOpenDrawer}>
+        Open Drawer
+      </Button>
+      {drawer}
+    </>
+  )
 }
 
 export default Bar

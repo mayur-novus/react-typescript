@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Button from '@material-ui/core/Button'
 import { fooDataSelector } from './foo.selectors'
 
 const Foo = () => {
@@ -16,7 +17,11 @@ const Foo = () => {
     return <pre>{JSON.stringify(data, null, 2)}</pre>
   }
 
-  return <button onClick={onGetUserData}>Get mayur-novus</button>
+  return (
+    <Button variant="outlined" size="small" onClick={onGetUserData}>
+      Get mayur-novus
+    </Button>
+  )
 }
 
 export default Foo

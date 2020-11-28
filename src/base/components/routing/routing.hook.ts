@@ -3,14 +3,14 @@ import { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { routingActions } from './routing.slice'
 
-export let routerHistory: any
+let rHistory: any
 
 export const RouteProvider = (props: any) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    routerHistory = history
+    rHistory = history
 
     dispatch(routingActions.set(history.location))
 
@@ -21,6 +21,8 @@ export const RouteProvider = (props: any) => {
 
   return props.children
 }
+
+export const routerHistory = () => rHistory
 
 export const useRouting = () => {
   const dispatch = useDispatch()

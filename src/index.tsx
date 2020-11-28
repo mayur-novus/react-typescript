@@ -1,18 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import { store } from 'app/store'
 import { BrowserRouter } from 'react-router-dom'
 import ScrollToTop from 'base/components/scroll-to-top'
 import { RouteProvider } from 'base/components/routing/routing.hook'
+import * as serviceWorker from './serviceWorker'
 
 function render() {
-  const App = require('app/App').default
-
-  ReactDOM.render(
-    <React.StrictMode>
+  import('app/App').then(({ default: App }) => {
+    ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
           <ScrollToTop />
@@ -20,10 +18,10 @@ function render() {
             <App />
           </RouteProvider>
         </BrowserRouter>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  )
+      </Provider>,
+      document.getElementById('root')
+    )
+  })
 }
 
 render()
